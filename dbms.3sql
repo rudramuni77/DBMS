@@ -1,0 +1,77 @@
+create table customer7
+(
+ customerno number(25),
+ cname varchar2(20),
+ city varchar2(20),
+ primary key(customerno)
+ );
+ 
+ create table order2
+ (
+    ordern number(25),
+    odate date,
+    customerno number(25),
+    orderamnt number(10,2),
+    primary key(ordern),
+    foreign key (customerno)REFERENCES customer7(customerno)
+    );
+    
+    create table item
+    (
+     itemno number(25),
+     price number(10,2),
+     primary key(itemno)
+     );
+     
+     create table orderitem
+     (
+        ordern number(10),
+        itemno number(10),
+        qty number(10,2),
+        primary key(ordern,itemno),
+        foreign key (ordern) references order2(ordern),
+     foreign key (itemno) references item(itemno)
+     );
+     
+     create table warehouse1
+     (
+       warehousno  number(25),
+       city varchar2(25),
+       primary key(warehousno)
+       );
+       
+       create table shipment1
+ ( 
+    ordern number(25),
+    warehousno number(25),
+    cdate date,
+    primary key(ordern,warehousno)
+    );
+     
+     
+     select * from customer7;
+     select * from order2;
+     select * from item;
+     SELECT * FROM ORDERITEM;
+    SELECT * FROM WAREHOUSE1;
+    SELECT * FROM SHIPMENT1;
+     
+     INSERT INTO customer7 VALUES
+     (&customerno,'&cname','&city'); 
+     
+      INSERT INTO order2 VALUES
+      (&ordern,'&odate',&customerno,&orderamnt);
+      
+      INSERT INTO item VALUES
+      (&itemno,&price);
+      
+      INSERT INTO orderitem VALUES
+      (&ordern,&itemno,&qty);
+      
+      INSERT INTO warehousE1 VALUES
+(&warehousno,'&city');
+
+INSERT INTO shipment1 VALUES
+(&ordern,&warehousno,'&bdate');
+
+delete from customer7 where customerno=771;
